@@ -1,0 +1,17 @@
+matrix:
+  include:
+    - os: linux
+      sudo: required
+      dist: trusty
+      language: python
+      services:
+        - docker
+      python:
+        - "3.6"
+      before_install:
+        - docker pull mooreap/tweeboparserdocker
+        - docker -p 8000:8000 run --rm mooreap/tweeboparserdocker
+      install:
+        - pip install -r requirements.txt
+      script:
+        - python -m pytest
