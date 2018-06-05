@@ -1,1 +1,1 @@
-from tweebo_parser.api import API
+from tweebo_parser.api import API, ServerError
