@@ -5,7 +5,7 @@ This is a Python 3 API to the [TweeboParser](https://github.com/apmoore1/TweeboP
 ## Installation and setup
 
 1. Requires Python 3.6
-2. `pip install tweebo_parser_python_api`
+2. `pip install tweebo-parser-python-api`
 3. Install [docker](https://docs.docker.com/install/)
 4. Start the TweeboParser API server running locally on port 8000: `docker run -p -d --rm 8000:8000 mooreap/tweeboparserdocker`
 
@@ -32,4 +32,4 @@ except ServerError as e:
     print(f'{e}\n{e.message}')
 ```
 
-For a more detailed example see the following [jupyter notebook](./notebooks/example.ipynb)
+For a more detailed example see the following [jupyter notebook](https://github.com/apmoore1/tweebo_parser_python_api/blob/master/notebooks/example.ipynb)
