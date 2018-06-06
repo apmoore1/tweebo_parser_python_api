@@ -1,2 +1,0 @@
-brew 'python'
-cask 'docker'
