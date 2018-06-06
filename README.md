@@ -7,11 +7,11 @@ This is a Python 3 API to the [TweeboParser](https://github.com/apmoore1/TweeboP
 1. Requires Python 3.6
 2. `pip install tweebo-parser-python-api`
 3. Install [docker](https://docs.docker.com/install/)
-4. Start the TweeboParser API server running locally on port 8000: `docker run -p -d --rm 8000:8000 mooreap/tweeboparserdocker`
+4. Start the TweeboParser API server running locally on port 8000: `docker run -p 8000:8000 -d --rm mooreap/tweeboparserdocker`
 
 **NOTE** This will run the server using as many threads as you have CPU cores on your machine. If you would like to specify the number of threads use the `--threads` flag e.g.:
 
-`docker run -p -d --rm 8000:8000 mooreap/tweeboparserdocker --threads 4`
+`docker run -p 8000:8000 -d --rm mooreap/tweeboparserdocker --threads 4`
 
 Also to stop the docker server running:
 1. Find the name assigned to the docker image using: `docker ps`
