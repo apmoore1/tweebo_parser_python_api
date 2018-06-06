@@ -221,65 +221,66 @@ B_DEP_2 = [{'dep': '_', 'governor': -1, 'governorGloss': '$$NAN$$',
             'dependent': 10, 'dependentGloss': 'party'},
            {'dep': '_', 'governor': -1, 'governorGloss': '$$NAN$$',
             'dependent': 11, 'dependentGloss': '?????'}]
-CONLL_0 = ('1\tI\t_\tO\tO\t_\t2\t_\n'
-           '2\tpredict\t_\tV\tV\t_\t0\t_\n'
-           '3\tI\t_\tO\tO\t_\t4\t_\n'
-           "4\twon't\t_\tV\tV\t_\t2\t_\n"
-           '5\twin\t_\tV\tV\t_\t4\t_\n'
-           '6\ta\t_\tD\tD\t_\t8\t_\n'
-           '7\tsingle\t_\tA\tA\t_\t8\t_\n'
-           '8\tgame\t_\tN\tN\t_\t5\t_\n'
-           '9\tI\t_\tO\tO\t_\t10\t_\n'
-           '10\tbet\t_\tV\tV\t_\t8\t_\n'
-           '11\ton\t_\tP\tP\t_\t10\tMWE\n'
-           '12\t.\t_\t,\t,\t_\t-1\t_\n'
-           '13\tGot\t_\tV\tV\t_\t0\t_\n'
-           '14\tCliff\t_\t^\t^\t_\t15\tMWE\n'
-           '15\tLee\t_\t^\t^\t_\t13\t_\n'
-           '16\ttoday\t_\tN\tN\t_\t13\t_\n'
-           '17\t,\t_\t,\t,\t_\t-1\t_\n'
-           '18\tso\t_\tP\tP\t_\t0\t_\n'
-           '19\tif\t_\tP\tP\t_\t22\t_\n'
-           '20\the\t_\tO\tO\t_\t21\t_\n'
-           '21\tloses\t_\tV\tV\t_\t19\t_\n'
-           '22\tits\t_\tL\tL\t_\t18\t_\n'
-           '23\ton\t_\tP\tP\t_\t22\t_\n'
-           '24\tme\t_\tO\tO\t_\t23\t_\n'
-           '25\tRT\t_\t~\t~\t_\t-1\t_\n'
-           '26\t@e_one\t_\t@\t@\t_\t-1\t_\n'
-           '27\t:\t_\t~\t~\t_\t-1\t_\n'
-           '28\tTexas\t_\t^\t^\t_\t21\t_\n'
-           '29\t(\t_\t,\t,\t_\t-1\t_\n'
-           '30\tcont\t_\t~\t~\t_\t-1\t_\n'
-           '31\t)\t_\t,\t,\t_\t-1\t_\n'
-           '32\thttp://tl.gd/6meogh\t_\tU\tU\t_\t-1\t_')
-CONLL_1 = ('1\tWednesday\t_\t^\t^\t_\t2\tMWE\n'
-           '2\t27th\t_\tA\tA\t_\t0\t_\n'
-           '3\toctober\t_\t^\t^\t_\t1\tMWE\n'
-           "4\t2010\t_\t$\t$\t_\t3\tMWE\n"
-           '5\t.\t_\t,\t,\t_\t-1\t_\n'
-           '6\t》have\t_\tV\tV\t_\t0\t_\n'
-           '7\ta\t_\tD\tD\t_\t9\t_\n'
-           '8\tnice\t_\tA\tA\t_\t9\t_\n'
-           '9\tday\t_\tN\tN\t_\t6\t_\n'
-           '10\t:)\t_\tE\tE\t_\t-1\t_')
-CONLL_2 = ('1\tRT\t_\t~\t~\t_\t-1\t_\n'
-           '2\t@DjBlack_Pearl\t_\t@\t@\t_\t-1\t_\n'
-           '3\t:\t_\t~\t~\t_\t-1\t_\n'
-           "4\twat\t_\tO\tO\t_\t0\t_\n"
-           '5\tmuhfuckaz\t_\tN\tN\t_\t6\t_\n'
-           '6\twearin\t_\tV\tV\t_\t4\t_\n'
-           '7\t4\t_\tP\tP\t_\t6\t_\n'
-           '8\tthe\t_\tD\tD\t_\t10\t_\n'
-           '9\tlingerie\t_\tN\tN\t_\t10\t_\n'
-           '10\tparty\t_\tN\tN\t_\t7\t_\n'
-           '11\t?????\t_\t,\t,\t_\t-1\t_')
+CONLL_0 = ('1\tI\t_\tO\tO\t_\t2\t_\t_\t_\n'
+           '2\tpredict\t_\tV\tV\t_\t0\t_\t_\t_\n'
+           '3\tI\t_\tO\tO\t_\t4\t_\t_\t_\n'
+           "4\twon't\t_\tV\tV\t_\t2\t_\t_\t_\n"
+           '5\twin\t_\tV\tV\t_\t4\t_\t_\t_\n'
+           '6\ta\t_\tD\tD\t_\t8\t_\t_\t_\n'
+           '7\tsingle\t_\tA\tA\t_\t8\t_\t_\t_\n'
+           '8\tgame\t_\tN\tN\t_\t5\t_\t_\t_\n'
+           '9\tI\t_\tO\tO\t_\t10\t_\t_\t_\n'
+           '10\tbet\t_\tV\tV\t_\t8\t_\t_\t_\n'
+           '11\ton\t_\tP\tP\t_\t10\tMWE\t_\t_\n'
+           '12\t.\t_\t,\t,\t_\t-1\t_\t_\t_\n'
+           '13\tGot\t_\tV\tV\t_\t0\t_\t_\t_\n'
+           '14\tCliff\t_\t^\t^\t_\t15\tMWE\t_\t_\n'
+           '15\tLee\t_\t^\t^\t_\t13\t_\t_\t_\n'
+           '16\ttoday\t_\tN\tN\t_\t13\t_\t_\t_\n'
+           '17\t,\t_\t,\t,\t_\t-1\t_\t_\t_\n'
+           '18\tso\t_\tP\tP\t_\t0\t_\t_\t_\n'
+           '19\tif\t_\tP\tP\t_\t22\t_\t_\t_\n'
+           '20\the\t_\tO\tO\t_\t21\t_\t_\t_\n'
+           '21\tloses\t_\tV\tV\t_\t19\t_\t_\t_\n'
+           '22\tits\t_\tL\tL\t_\t18\t_\t_\t_\n'
+           '23\ton\t_\tP\tP\t_\t22\t_\t_\t_\n'
+           '24\tme\t_\tO\tO\t_\t23\t_\t_\t_\n'
+           '25\tRT\t_\t~\t~\t_\t-1\t_\t_\t_\n'
+           '26\t@e_one\t_\t@\t@\t_\t-1\t_\t_\t_\n'
+           '27\t:\t_\t~\t~\t_\t-1\t_\t_\t_\n'
+           '28\tTexas\t_\t^\t^\t_\t21\t_\t_\t_\n'
+           '29\t(\t_\t,\t,\t_\t-1\t_\t_\t_\n'
+           '30\tcont\t_\t~\t~\t_\t-1\t_\t_\t_\n'
+           '31\t)\t_\t,\t,\t_\t-1\t_\t_\t_\n'
+           '32\thttp://tl.gd/6meogh\t_\tU\tU\t_\t-1\t_\t_\t_')
+CONLL_1 = ('1\tWednesday\t_\t^\t^\t_\t2\tMWE\t_\t_\n'
+           '2\t27th\t_\tA\tA\t_\t0\t_\t_\t_\n'
+           '3\toctober\t_\t^\t^\t_\t1\tMWE\t_\t_\n'
+           "4\t2010\t_\t$\t$\t_\t3\tMWE\t_\t_\n"
+           '5\t.\t_\t,\t,\t_\t-1\t_\t_\t_\n'
+           '6\t》have\t_\tV\tV\t_\t0\t_\t_\t_\n'
+           '7\ta\t_\tD\tD\t_\t9\t_\t_\t_\n'
+           '8\tnice\t_\tA\tA\t_\t9\t_\t_\t_\n'
+           '9\tday\t_\tN\tN\t_\t6\t_\t_\t_\n'
+           '10\t:)\t_\tE\tE\t_\t-1\t_\t_\t_')
+CONLL_2 = ('1\tRT\t_\t~\t~\t_\t-1\t_\t_\t_\n'
+           '2\t@DjBlack_Pearl\t_\t@\t@\t_\t-1\t_\t_\t_\n'
+           '3\t:\t_\t~\t~\t_\t-1\t_\t_\t_\n'
+           "4\twat\t_\tO\tO\t_\t0\t_\t_\t_\n"
+           '5\tmuhfuckaz\t_\tN\tN\t_\t6\t_\t_\t_\n'
+           '6\twearin\t_\tV\tV\t_\t4\t_\t_\t_\n'
+           '7\t4\t_\tP\tP\t_\t6\t_\t_\t_\n'
+           '8\tthe\t_\tD\tD\t_\t10\t_\t_\t_\n'
+           '9\tlingerie\t_\tN\tN\t_\t10\t_\t_\t_\n'
+           '10\tparty\t_\tN\tN\t_\t7\t_\t_\t_\n'
+           '11\t?????\t_\t,\t,\t_\t-1\t_\t_\t_')
 
 
 def test_api_conll():
     '''
     Tests :py:func:`tweebo_parser.API.parse_conll` where the output type is \
     conll. We perform the following tests:
+
     1. 3 different sentences (one of the sentences contains a UTF specific \
     character)
     2. 5 sentences that include empty sentences.
@@ -300,6 +301,7 @@ def test_api_stanford():
     '''
     Tests :py:func:`tweebo_parser.API.parse_stanford` where the output type \
     is stanford styled. We perform the following tests:
+
     1. 3 different sentences (one of the sentences contains a UTF character)
     2. 5 sentences that include empty sentences.
     3. Empty list
@@ -338,12 +340,21 @@ def test_multi_processing():
 
 
 def test_api_exceptions():
+    '''
+    Test that exceptions are raised when wrong input is given.
+
+    1. Test HTTPError raises when List of integers are given instead of a \
+    List of Strings.
+    2. Test HTTPError raises when a String is given instead of a List of \
+    Strings.
+    '''
 
     def cause_error(data: Any, exception: Any, api: API):
         functions = ['parse_conll', 'parse_stanford']
         for function in functions:
             with pytest.raises(exception):
                 getattr(api, function)(data)
+
     tweebo_api = API()
     cause_error([1], requests.exceptions.HTTPError, tweebo_api)
     cause_error('hello how are you', requests.exceptions.HTTPError, tweebo_api)
