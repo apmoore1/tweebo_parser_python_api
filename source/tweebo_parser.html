@@ -1,0 +1,410 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tweebo_parser package &mdash; TweeboParse-Python-API  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> TweeboParse-Python-API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">tweebo_parser package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-tweebo_parser.api">tweebo_parser.api module</a></li>
+<li><a class="reference internal" href="#module-tweebo_parser">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TweeboParse-Python-API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>tweebo_parser package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/source/tweebo_parser.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tweebo-parser-package">
+<h1>tweebo_parser package<a class="headerlink" href="#tweebo-parser-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-tweebo_parser.api">
+<span id="tweebo-parser-api-module"></span><h2>tweebo_parser.api module<a class="headerlink" href="#module-tweebo_parser.api" title="Permalink to this headline">¶</a></h2>
+<p>Module contains the following class:</p>
+<dl class="class">
+<dt id="tweebo_parser.api.API">
+<em class="property">class </em><code class="descclassname">tweebo_parser.api.</code><code class="descname">API</code><span class="sig-paren">(</span><em>hostname='0.0.0.0'</em>, <em>port=8000</em>, <em>retries=10</em>, <em>log_errors=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tweebo_parser/api.html#API"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tweebo_parser.api.API" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Allows easy connection and requests to the TweeboParse API server.     TweeboParse is a Twitter specific dependency parser.</p>
+<p>Attributes:</p>
+<ol class="arabic simple">
+<li>hostname – The IP address of the TweeboParser API server.</li>
+<li>port – The Port that the TweeboParser API server is attached to.</li>
+<li>retries – Number of times to retry json decoding the returned data.</li>
+<li>log_errors – Whether to log errors or not. If this is True it logs
+errors under <cite>tweebo_log</cite> file within your temp_dir</li>
+</ol>
+<dl class="method">
+<dt id="tweebo_parser.api.API.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>hostname='0.0.0.0'</em>, <em>port=8000</em>, <em>retries=10</em>, <em>log_errors=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tweebo_parser/api.html#API.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tweebo_parser.api.API.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>hostname</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The IP address of the TweeboParser API server.</li>
+<li><strong>port</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The Port that the TweeboParser API server is attached to.</li>
+<li><strong>retries</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Number of times to retry json decoding the
+returned data.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tweebo_parser.api.API.log_error">
+<code class="descname">log_error</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tweebo_parser/api.html#API.log_error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tweebo_parser.api.API.log_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given some error text it will log the text if self.log_errors is True</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Error text to log</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tweebo_parser.api.API.parse_conll">
+<code class="descname">parse_conll</code><span class="sig-paren">(</span><em>texts</em>, <em>retry_count=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tweebo_parser/api.html#API.parse_conll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tweebo_parser.api.API.parse_conll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Processes the texts using TweeboParse and returns them in CoNLL format.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>texts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – The List of Strings to be processed by TweeboParse.</li>
+<li><strong>retry_count</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of times it has retried for. Default
+0 does not require setting, main purpose is for
+recursion.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A list of CoNLL formated strings.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#tweebo_parser.api.ServerError" title="tweebo_parser.api.ServerError"><strong>ServerError</strong></a> – Caused when the server is not running.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>:raises <code class="xref py py-class docutils literal notranslate"><span class="pre">requests.exceptions.HTTPError</span></code>: Caused when the</dt>
+<dd>input texts is not formated correctly e.g. When you give it a
+String not a list of Strings.</dd>
+<dt>:raises <code class="xref py py-class docutils literal notranslate"><span class="pre">json.JSONDecodeError</span></code>: Caused if after self.retries</dt>
+<dd>attempts to parse the data it cannot decode the data.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tweebo_parser.api.API.parse_stanford">
+<code class="descname">parse_stanford</code><span class="sig-paren">(</span><em>texts</em>, <em>retry_count=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tweebo_parser/api.html#API.parse_stanford"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tweebo_parser.api.API.parse_stanford" title="Permalink to this definition">¶</a></dt>
+<dd><p>Processes the texts using TweeboParse and returns them in a Stanford
+styled format (as in the same format as the json return of the Stanford
+CoreNLP server dependency parser).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>texts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – The List of Strings to be processed by TweeboParse.</li>
+<li><strong>retry_count</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of times it has retried for. Default
+0 does not require setting, main purpose is for
+recursion.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]]</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A list of dicts.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#tweebo_parser.api.ServerError" title="tweebo_parser.api.ServerError"><strong>ServerError</strong></a> – Caused when the server is not running.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>:raises <code class="xref py py-class docutils literal notranslate"><span class="pre">requests.exceptions.HTTPError</span></code>: Caused when the</dt>
+<dd>input texts is not formated correctly e.g. When you give it a
+String not a list of Strings.</dd>
+<dt>:raises <code class="xref py py-class docutils literal notranslate"><span class="pre">json.JSONDecodeError</span></code>: Caused if after self.retries</dt>
+<dd>attempts to parse the data it cannot decode the data.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>::</dt>
+<dd>from tweebo_parser import API
+tweebo_api = API()
+text_data = [‘hello how are you’, ‘Where are we going’]
+result = tweebo_api.parse_stanford(text_data)
+print(result)
+[{}]</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="tweebo_parser.api.ServerError">
+<em class="property">exception </em><code class="descclassname">tweebo_parser.api.</code><code class="descname">ServerError</code><span class="sig-paren">(</span><em>excpetion</em>, <em>hostname</em>, <em>port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tweebo_parser/api.html#ServerError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tweebo_parser.api.ServerError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception raised when the Server API is not avliable.</p>
+<p>Attributes:</p>
+<ol class="arabic simple">
+<li>message – Explains why it could not connect to the server, and
+details of the server it tried to connect to.</li>
+</ol>
+<dl class="method">
+<dt id="tweebo_parser.api.ServerError.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>excpetion</em>, <em>hostname</em>, <em>port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tweebo_parser/api.html#ServerError.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tweebo_parser.api.ServerError.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>exception</strong> – The requests exception instance that is raised.</li>
+<li><strong>hostname</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The IP address of the API server.</li>
+<li><strong>port</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The Port that the API server is attached to.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-tweebo_parser">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tweebo_parser" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Andrew Moore.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

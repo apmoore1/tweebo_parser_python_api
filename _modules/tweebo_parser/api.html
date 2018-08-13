@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tweebo_parser.api &mdash; TweeboParse-Python-API  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> TweeboParse-Python-API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">TweeboParse-Python-API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>tweebo_parser.api</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for tweebo_parser.api</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Module contains the following class:</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+
+
+<div class="viewcode-block" id="API"><a class="viewcode-back" href="../../source/tweebo_parser.html#tweebo_parser.api.API">[docs]</a><span class="k">class</span> <span class="nc">API</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Allows easy connection and requests to the TweeboParse API server. \</span>
+<span class="sd">    TweeboParse is a Twitter specific dependency parser.</span>
+
+<span class="sd">    Attributes:</span>
+
+<span class="sd">    1. hostname -- The IP address of the TweeboParser API server.</span>
+<span class="sd">    2. port -- The Port that the TweeboParser API server is attached to.</span>
+<span class="sd">    3. retries -- Number of times to retry json decoding the returned data.</span>
+<span class="sd">    4. log_errors -- Whether to log errors or not. If this is True it logs</span>
+<span class="sd">       errors under `tweebo_log` file within your temp_dir</span>
+<span class="sd">    .. automethod:: __init__</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="API.__init__"><a class="viewcode-back" href="../../source/tweebo_parser.html#tweebo_parser.api.API.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span>
+                 <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8000</span><span class="p">,</span> <span class="n">retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+                 <span class="n">log_errors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        :param hostname: The IP address of the TweeboParser API server.</span>
+<span class="sd">        :param port: The Port that the TweeboParser API server is attached to.</span>
+<span class="sd">        :param retries: Number of times to retry json decoding the</span>
+<span class="sd">                        returned data.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retries</span> <span class="o">=</span> <span class="n">retries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_errors</span> <span class="o">=</span> <span class="n">log_errors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_fp</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span><span class="p">(),</span> <span class="s1">&#39;tweebo_log&#39;</span><span class="p">)</span>
+        <span class="c1"># Delete the old file</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_fp</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_log_fp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="API.log_error"><a class="viewcode-back" href="../../source/tweebo_parser.html#tweebo_parser.api.API.log_error">[docs]</a>    <span class="k">def</span> <span class="nf">log_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Given some error text it will log the text if self.log_errors is True</span>
+
+<span class="sd">        :param text: Error text to log</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_errors</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_fp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">log_file</span><span class="p">:</span>
+                <span class="n">log_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{text}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="API.parse_conll"><a class="viewcode-back" href="../../source/tweebo_parser.html#tweebo_parser.api.API.parse_conll">[docs]</a>    <span class="k">def</span> <span class="nf">parse_conll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">retry_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Processes the texts using TweeboParse and returns them in CoNLL format.</span>
+
+<span class="sd">        :param texts: The List of Strings to be processed by TweeboParse.</span>
+<span class="sd">        :param retry_count: The number of times it has retried for. Default</span>
+<span class="sd">                            0 does not require setting, main purpose is for</span>
+<span class="sd">                            recursion.</span>
+<span class="sd">        :return: A list of CoNLL formated strings.</span>
+<span class="sd">        :raises ServerError: Caused when the server is not running.</span>
+<span class="sd">        :raises :py:class:`requests.exceptions.HTTPError`: Caused when the</span>
+<span class="sd">                input texts is not formated correctly e.g. When you give it a</span>
+<span class="sd">                String not a list of Strings.</span>
+<span class="sd">        :raises :py:class:`json.JSONDecodeError`: Caused if after self.retries</span>
+<span class="sd">                attempts to parse the data it cannot decode the data.</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">post_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;texts&#39;</span><span class="p">:</span> <span class="n">texts</span><span class="p">,</span> <span class="s1">&#39;output_type&#39;</span><span class="p">:</span> <span class="s1">&#39;conll&#39;</span><span class="p">}</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;http://</span><span class="si">{self.hostname}</span><span class="s1">:</span><span class="si">{self.port}</span><span class="s1">&#39;</span><span class="p">,</span>
+                                     <span class="n">json</span><span class="o">=</span><span class="n">post_data</span><span class="p">,</span>
+                                     <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Connection&#39;</span><span class="p">:</span> <span class="s1">&#39;close&#39;</span><span class="p">})</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">,</span>
+                <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">)</span> <span class="k">as</span> <span class="n">server_error</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ServerError</span><span class="p">(</span><span class="n">server_error</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">http_error</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">http_error</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">json_exception</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">retry_count</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">retries</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Json Decoding error cannot parse this &#39;</span>
+                                    <span class="n">f</span><span class="s1">&#39;:</span><span class="se">\n</span><span class="si">{response.text}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_conll</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">retry_count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="API.parse_stanford"><a class="viewcode-back" href="../../source/tweebo_parser.html#tweebo_parser.api.API.parse_stanford">[docs]</a>    <span class="k">def</span> <span class="nf">parse_stanford</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">retry_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+                       <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Processes the texts using TweeboParse and returns them in a Stanford</span>
+<span class="sd">        styled format (as in the same format as the json return of the Stanford</span>
+<span class="sd">        CoreNLP server dependency parser).</span>
+
+<span class="sd">        :param texts: The List of Strings to be processed by TweeboParse.</span>
+<span class="sd">        :param retry_count: The number of times it has retried for. Default</span>
+<span class="sd">                            0 does not require setting, main purpose is for</span>
+<span class="sd">                            recursion.</span>
+<span class="sd">        :return: A list of dicts.</span>
+<span class="sd">        :raises ServerError: Caused when the server is not running.</span>
+<span class="sd">        :raises :py:class:`requests.exceptions.HTTPError`: Caused when the</span>
+<span class="sd">                input texts is not formated correctly e.g. When you give it a</span>
+<span class="sd">                String not a list of Strings.</span>
+<span class="sd">        :raises :py:class:`json.JSONDecodeError`: Caused if after self.retries</span>
+<span class="sd">                attempts to parse the data it cannot decode the data.</span>
+
+<span class="sd">        :Example:</span>
+<span class="sd">        ::</span>
+<span class="sd">            from tweebo_parser import API</span>
+<span class="sd">            tweebo_api = API()</span>
+<span class="sd">            text_data = [&#39;hello how are you&#39;, &#39;Where are we going&#39;]</span>
+<span class="sd">            result = tweebo_api.parse_stanford(text_data)</span>
+<span class="sd">            print(result)</span>
+<span class="sd">            [{}]</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">post_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;texts&#39;</span><span class="p">:</span> <span class="n">texts</span><span class="p">,</span> <span class="s1">&#39;output_type&#39;</span><span class="p">:</span> <span class="s1">&#39;stanford&#39;</span><span class="p">}</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;http://</span><span class="si">{self.hostname}</span><span class="s1">:</span><span class="si">{self.port}</span><span class="s1">&#39;</span><span class="p">,</span>
+                                     <span class="n">json</span><span class="o">=</span><span class="n">post_data</span><span class="p">,</span>
+                                     <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Connection&#39;</span><span class="p">:</span> <span class="s1">&#39;close&#39;</span><span class="p">})</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">,</span>
+                <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">,</span>
+                <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">InvalidSchema</span><span class="p">)</span> <span class="k">as</span> <span class="n">server_error</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ServerError</span><span class="p">(</span><span class="n">server_error</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">http_error</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">http_error</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">json_exception</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">retry_count</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">retries</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Json Decoding error cannot parse this &#39;</span>
+                                    <span class="n">f</span><span class="s1">&#39;:</span><span class="se">\n</span><span class="si">{response.text}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_stanford</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">retry_count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ServerError"><a class="viewcode-back" href="../../source/tweebo_parser.html#tweebo_parser.api.ServerError">[docs]</a><span class="k">class</span> <span class="nc">ServerError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Exception raised when the Server API is not avliable.</span>
+
+<span class="sd">    Attributes:</span>
+
+<span class="sd">    1. message -- Explains why it could not connect to the server, and</span>
+<span class="sd">       details of the server it tried to connect to.</span>
+
+<span class="sd">    .. automethod:: __init__</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="ServerError.__init__"><a class="viewcode-back" href="../../source/tweebo_parser.html#tweebo_parser.api.ServerError.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">excpetion</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span><span class="p">,</span>
+                 <span class="n">hostname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">port</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        :param exception: The requests exception instance that is raised.</span>
+<span class="sd">        :param hostname: The IP address of the API server.</span>
+<span class="sd">        :param port: The Port that the API server is attached to.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">message</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;Cannot connect to the server at </span><span class="si">{hostname}</span><span class="s1">:</span><span class="si">{port}</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">excpetion</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">):</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Error caused by Time out. This is most likely due to &#39;</span>\
+                      <span class="n">f</span><span class="s1">&#39;the server not running at: </span><span class="si">{hostname}</span><span class="s1">:</span><span class="si">{port}</span><span class="s1">&#39;</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">excpetion</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">):</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Error caused by Connection Error. This is most likely &#39;</span>\
+                      <span class="n">f</span><span class="s1">&#39;due to the server not running at </span><span class="si">{hostname}</span><span class="s1">:</span><span class="si">{port}</span><span class="s1">&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Andrew Moore.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
