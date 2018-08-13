@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 
 setup(name='tweebo_parser_python_api',
-      version='1.0.3',
+      version='1.0.4',
       description='Python 3 API to the TweeboParser',
       long_description=long_description,
       long_description_content_type="text/markdown",

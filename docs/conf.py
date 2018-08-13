@@ -160,4 +160,6 @@ texinfo_documents = [
 
 
 # -- Extension configuration -------------------------------------------------
-
+# Example configuration for intersphinx: refer to the Python standard library.
+intersphinx_mapping = {'python': ('https://docs.python.org/3.6/', None),
+                       'requests': ('http://docs.python-requests.org/en/v2.9.1/', None)}
